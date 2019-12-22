@@ -56,6 +56,21 @@ body {
 	/*outline: 2px solid #555555;*/
 }
 
+.inspiration {
+	font-family: opensans;
+	color: white;
+	text-align: center;
+	font-size:10px;
+
+	position: fixed;
+	width: 90%;
+	top: 95%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	/*outline: 2px solid #555555;*/
+}
+
+
 .button {
 	background-color: #4CAFFF;
 	
