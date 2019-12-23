@@ -8,14 +8,13 @@ category_names =
 data = `
 
 #template:
-    <A> @mood@ @storytype@ where you follow @player:cangroup@ who( , both )(is,are) (<a> , )@character_description@ @character@, on their [journey, travel, trip, way] towards [glory, greatness, legendaryness]
-	<A> @mood@ @storytype@ featuring the one and only @character_description@ @player@ @goal_prefix@ @goal@
-	<A> steamy love-triangle involving @player@ @character_description_post@, @player@ @character_description_post@ and @player@ @character_description_post@. 
-	<A> @storytype@ where the @character_description@ [protagonist, hero, villian, cutie] @player@ @goal_prefix@ convince @player@ to become their secret lover in a @mood@ @storytype@ to save the [world, universe, galaxy, planet, neighbourhood, city, town]
+    {A} @mood@ @storytype@ where you follow @player:cangroup@ who( , both )(is,are) ({a} , )@character_description@ @character@, on their [journey, travel, trip, way] towards [glory, greatness, legendaryness]
+	{A} @mood@ @storytype@ featuring the one and only @character_description@ @player@ @goal_prefix@ @goal@
+	{A} steamy love-triangle involving @player@ @character_description_post@, @player@ @character_description_post@ and @player@ @character_description_post@. 
+	{A} @storytype@ where the @character_description@ [protagonist, hero, villian, cutie] @player@ @goal_prefix@ convince @player@ to become their secret lover in a @mood@ @storytype@ to save the [world, universe, galaxy, planet, neighbourhood, city, town]
 	Anything where @player:cangroup@ (is,are) cool
-	<A> @storytype@ about a @character_description@ @character@ who just [love, feed on] watching @player@ sleep
+	{A} @storytype@ about a @character_description@ @character@ who just [love, feed on] watching @player@ sleep
 	Mineplex [great, interesting, fun, popular, not bad, decent, breathtaking] again
-	<A> @mood@ @storytype@ where you play as the @character_description@ @character@ with @player@ as your @character_description@ assistant, in a quest for [justice, freedom, love, brotherhood]
 #end
 
 #player:
@@ -218,6 +217,7 @@ data = `
 	challenging
 	rage-inducing
 	stressful
+	extraordinary
 	relaxing
 	meditative
 	calming

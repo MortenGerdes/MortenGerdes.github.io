@@ -2,7 +2,7 @@ var isCharacterInGroup = false
 
 function generate() 
 {
-    fillTemplate(pickRandomFromList(getCategoryOptionsArray("template"))) + ".";
+    fillTemplate(pickRandomFromList(getCategoryOptionsArray("template")));
 }
 
 function setSiteText(text)
@@ -29,6 +29,7 @@ async function fillTemplate(template)
 			modifiers = command.split(':')[1].split(',');
 		}
         await new Promise(r => setTimeout(r, 2000));
+        template = template.fontcolor("white")
         switch(keyword) 
         {
             case "player":
@@ -59,7 +60,7 @@ async function fillTemplate(template)
                 replace = generateMood(modifiers)
                 break;
         }
-
+        replace = replace.fontcolor("red")
         template = replaceBetweenTags(template, replace, "@", "@")
         setSiteText(template)
         return fillTemplate(template)
@@ -72,11 +73,10 @@ async function fillTemplate(template)
     setSiteText(template)
     await new Promise(r => setTimeout(r, 2000));
 
-    if(template.includes("<"))
+    if(template.includes("{"))
     {
         template = parseArticle(template)
         setSiteText(template)
-        await new Promise(r => setTimeout(r, 2000));
         return fillTemplate(template)
     }
     return template
@@ -179,7 +179,10 @@ function replaceBetweenTags(text, replace, startTag, endTag)
     let startRemoved = text.replace(startTag, "")
     let endRemoved = startRemoved.replace(endTag, "")
 
-    return endRemoved.replace(textBetween, replace)
+    let toReturn = endRemoved.replace(textBetween, replace)
+
+    toReturn = toReturn.fontcolor("green")
+    return toReturn
 }
 
 function parseBrackets(text)
@@ -198,15 +201,15 @@ function parseBrackets(text)
 function parseArticle(text)
 {
     let replacementText = text
-    let isACap = (text.charAt(text.indexOf("<") + 1) == text.charAt(text.indexOf("<") + 1).toUpperCase())
+    let isACap = (text.charAt(text.indexOf("{") + 1) == text.charAt(text.indexOf("{") + 1).toUpperCase())
 
-    if(text.charAt(text.indexOf("<") + 4).match(/[aeiou]/i))
+    if(text.charAt(text.indexOf("{") + 4).match(/[aeiou]/i))
     {
-        replacementText = replaceBetweenTags(replacementText, isACap ? "An" : "an", "<", ">") 
+        replacementText = replaceBetweenTags(replacementText, isACap ? "An" : "an", "{", "}") 
     }
     else
     {
-        replacementText = replaceBetweenTags(replacementText, isACap ? "A" : "a", "<", ">") 
+        replacementText = replaceBetweenTags(replacementText, isACap ? "A" : "a", "{", "}") 
     }
     return replacementText
 }
