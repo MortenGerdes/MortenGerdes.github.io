@@ -2,13 +2,22 @@ var isCharacterInGroup = false
 
 function generate() 
 {
-    document.getElementById("content").innerHTML = fillTemplate(pickRandomFromList(getCategoryOptionsArray("template"))) + ".";
-
-    fillTemplate(pickRandomFromList(getCategoryOptionsArray("template")))
+    fillTemplate(pickRandomFromList(getCategoryOptionsArray("template"))) + ".";
 }
 
-function fillTemplate(template)
+function setSiteText(text)
 {
+    document.getElementById("content").innerHTML = text + ".";
+
+}
+
+async function fillTemplate(template)
+{
+    if(template.includes("\t"))
+    {
+        template = template.split("\t").join("")
+    }
+
     if(template.includes("@"))
     {
         let command = getTextBetweenTags(template, "@", "@")
@@ -19,7 +28,7 @@ function fillTemplate(template)
 		if (command.includes(':')) {
 			modifiers = command.split(':')[1].split(',');
 		}
-
+        await new Promise(r => setTimeout(r, 2000));
         switch(keyword) 
         {
             case "player":
@@ -52,21 +61,24 @@ function fillTemplate(template)
         }
 
         template = replaceBetweenTags(template, replace, "@", "@")
+        setSiteText(template)
         return fillTemplate(template)
     }
-    if(template.includes("\t"))
-    {
-        template = template.split("\t").join("")
-    }
+
     template = parseBrackets(template)
+    setSiteText(template)
+    await new Promise(r => setTimeout(r, 2000));
     template = parseOption(template)
+    setSiteText(template)
+    await new Promise(r => setTimeout(r, 2000));
 
     if(template.includes("<"))
     {
         template = parseArticle(template)
+        setSiteText(template)
+        await new Promise(r => setTimeout(r, 2000));
         return fillTemplate(template)
     }
-
     return template
 }
 
@@ -196,7 +208,6 @@ function parseArticle(text)
     {
         replacementText = replaceBetweenTags(replacementText, isACap ? "A" : "a", "<", ">") 
     }
-
     return replacementText
 }
 
